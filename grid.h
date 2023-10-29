@@ -18,5 +18,4 @@ private:
    int cellSize;
    // after we have printed the grid and gave it the value 0 we have to guve colors to different blocks of tetris
    std::vector<Color> colours;
-   std::vector<Color> GetCellColors();
 };
