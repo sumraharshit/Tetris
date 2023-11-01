@@ -10,7 +10,19 @@ class Game
    Block GetRandomBlock();
    std::vector<Block> GetAllBlocks();
    void Draw();
+   void HandleInput();
+
+   void MoveLeft();
+
+   void MoveRight();
+
+   void MoveDown();
+
    private:
+   bool isBlockOutside();
+   void BlockRotation();
+   void Locking();
+   bool CheckCollision();
    std::vector<Block> blocks;
    Block currentBlock;
    Block nextBlock;
