@@ -21,7 +21,16 @@ int main()
     Grid grid = Grid();
     grid.Print();
     while(WindowShouldClose()==false) //windowshouls=dclose checks whether the esc or quit icon is pressed or not, if pressed it returns true
-   {
+   {  game.HandleInput();
+     // THE FUNCTION IS DEFINED TO DROP THE BLOCK AS IN CLAASSIC TETRIS
+    //NOW THE ISSUE IS THAT THE BLOCK DROPS EVERY QUICKLY THATS BEACAUSE WE HAVE SET THE FPS TO 60, MEANING THAT THE BLOCK DROPS 60
+    //GRIDS EVERY SECOND, NOW TO FIX THAT WE CAN IMPLEMENT EVENT TRIGGER THAT WILL MAKE SURE THAT THE BLOCK DROPS AFTER A CERTAIN TIME
+    // TIME INTERVAL.
+    // have commented the previously implemented Movedown function.
+    if(MovingBlockDown(0.5))
+    {
+      game.MoveDown();
+    }
      BeginDrawing(); //begin drawning canvas
      ClearBackground(darkblue);
      // implenmneting draw in grid
