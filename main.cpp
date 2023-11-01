@@ -1,7 +1,17 @@
 #include <raylib.h>
 #include "grid.h"
 
+double LastTimeUpdation =0;
 
+bool MovingBlockDown(double interval)
+{
+  double CurentTime = GetTime();
+  if(CurentTime - LastTimeUpdation>=interval)
+  { LastTimeUpdation = CurentTime;
+    return true;
+  }
+  return false;
+}
 
 int main()
 {   Color darkblue ={10,10,255,255};
