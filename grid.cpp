@@ -1,6 +1,6 @@
 #include "grid.h"
+#include "colour.h"
 #include <iostream>
-#include "color.h"
 using namespace std;
 
 Grid::Grid()
@@ -50,5 +50,68 @@ void Grid::Draw()
       DrawRectangle(column*cellSize+1, row*cellSize+1, cellSize-1, cellSize-1, colours[cellValue] );
       // now lets call the draw function we have created in the main
     }
+  }
+}
+
+bool Grid::isCellOutsideGrid(int row, int column)
+{
+  if(row >=0 && row<numRows && column>=0 && column<numColms)
+  return false;
+  return true;
+
+}
+
+bool Grid::CellEmpty(int row, int column)
+{  if(grid[row][column]==0)
+  {return true;}
+
+  return false;
+}
+
+int Grid::ClearFullRows()
+{  int completed =0;
+   for(int row = numRows-1; row>=0; row--)
+   {
+    if(Rowfull(row))
+    {
+       RowClear(row);
+       completed++;
+    }
+
+    else if(completed>0)
+    {
+      MoveRow(row, completed);
+    }
+   }
+
+   return completed;
+}
+
+bool Grid::Rowfull(int row)
+{  for(int column = 0; column< numColms; column ++)
+ {
+   if(grid[row][column]==0)
+    {
+      return false;
+    }
+ }
+
+ return true; 
+}
+
+void Grid::RowClear(int row)
+{  
+  for(int column = 0; column< numColms; column++)
+  {
+    grid[row][column]=0;
+  }
+}
+
+void Grid::MoveRow(int row, int numRows)
+{
+  for(int column=0; column < numColms; column++)
+  {
+    grid[row+numRows][column]=grid[row][column];
+    grid[row][column]=0;
   }
 }
