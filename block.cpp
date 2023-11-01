@@ -38,3 +38,10 @@ std::vector<Position> Block::GetCellPosition()
    }
    return movedTiles;
 }
+
+void Block::Rotate()  // to roate the block will be called by the BlockRotation function in game file
+{
+    rotationState++;
+    if(rotationState==(int)cells.size())
+    rotationState=0;
+}
